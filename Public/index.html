@@ -3,9 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ExtorPrev es una solución digital preventiva para el transporte urbano en Lima. Identifica y anticipa zonas de riesgo y extorsiones en tiempo real.">
     <title>ExtorPrev</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/styles/styles.css">
 </head>
 <body>
-    
+
+    <header>
+        <div class="container">
+            <nav>
+                <ul class="menu">
+                    <li><a href="#home" class="active">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#sobre-app">Sobre la app</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <a href="#home" class="logo">
+                <img src="assets/images/logo.png" alt="Logo de ExtorPrev">
+            </a>
+            <div class="nav-auth">
+                <a href="#">Login</a>
+                <a href="#">Register</a>
+            </div>
+            <button class="menu-btn" aria-label="Abrir menú de navegación">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="inicio">
+            <div class="container">
+                <div class="inicio-img">
+                    <img src="assets/images/inicio.png" alt="">
+                </div>
+                <div class="inicio-texto">
+                    <blockquote>
+                        "Muévete con seguridad, toma decisiones informadas en cada viaje."
+                    </blockquote>
+                    <p>
+                        Con ExtorPrev puedes moverte con mayor seguridad y proteger tu bienestar en cada viaje. Tú también viaja seguro con ExtorPrev.
+                    </p>
+                    <a href="#sobre-app" class="btn btn-principal">Descargar aplicación</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="nosotros claro">
+            <div class="container">
+                <div class="nosotros-texto">
+                    <h2>Nuestra Misión es Prevenir y Proteger</h2>
+                    <p>
+                        Somos PrevCorp, una start-up de estudiantes de la UPC. Somos creadores de ExtorPrev, una aplicación que busca mejorar la seguridad de pasajeros y conductores durante sus desplazamientos en el transporte urbano.
+                    </p>
+                    <div class="valores">
+                        <h3>Nuestros Valores</h3>
+                        <article>
+                            <h4>Misión:</h4>
+                            <p>
+                                Mejorar la seguridad de los ciudadanos en el transporte urbano mediante tecnología que permita identificar y anticipar zonas de riesgo, promoviendo traslados más seguros a través de información preventiva en tiempo real.
+                            </p>
+                        </article>
+                        <article>
+                            <h4>Visión:</h4>
+                            <p>
+                                Ser la empresa líder en Perú en soluciones tecnológicas preventivas para la seguridad en el transporte urbano, contribuyendo a una mayor tranquilidad y bienestar para pasajeros y conductores.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+                <div class="equipo">
+                    <h3>About the Team</h3>
+                    <img src="assets/images/nosotros.png" alt="Presentación del equipo de PrevCorp">
+                </div>
+            </div>
+        </section>
+
+        <section class="app">
+            <div class="container">
+                <div class="app-img">
+                    <img src="assets/images/Sobrelaapp.png" alt="">
+                </div>
+                <div class="app-texto">
+                    <h2>SEGURIDAD EN TUS MANOS</h2>
+                    <p>
+                        ExtorPrev es una aplicación de prevención y alerta que ayuda a pasajeros y conductores a identificar zonas de riesgo en tiempo real, permitiéndoles tomar decisiones más seguras durante sus desplazamientos urbanos.
+                    </p>
+
+                    <div class="caracteristicas">
+                        <article>
+                            <div><i class="fa-solid fa-bell"></i></div>
+                            <h3>Alertas en Tiempo Real</h3>
+                            <p>Alertas inteligentes que notifican al usuario en tiempo real cuando se aproxima a una zona de riesgo, permitiéndole tomar decisiones más seguras durante su trayecto.</p>
+                        </article>
+                        <article>
+                            <div><i class="fa-solid fa-user-secret"></i></div>
+                            <h3>Reporte Seguro</h3>
+                            <p>Función que permite a los usuarios reportar incidentes o zonas peligrosas de manera rápida y anónima, contribuyendo a mantener la información actualizada en tiempo real.</p>
+                        </article>
+                        <article>
+                            <div><i class="fa-solid fa-lightbulb"></i></div>
+                            <h3>Consejos</h3>
+                            <p>Recomendaciones rápidas de seguridad y prevención para ayudar al usuario a movilizarse de forma más segura.</p>
+                        </article>
+                        <article>
+                            <div><i class="fa-solid fa-user-gear"></i></div>
+                            <h3>Perfil</h3>
+                            <p>Espacio donde el usuario puede gestionar su información, preferencias y configuraciones de la aplicación de manera personalizada.</p>
+                        </article>
+                        <article class="destacada">
+                            <div><i class="fa-solid fa-map-location-dot"></i></div>
+                            <h3>Mapa</h3>
+                            <p>Visualización interactiva de zonas de riesgo, rutas y alertas en tiempo real durante el trayecto. Permite ver mapas de calor con datos recolectados de la comunidad.</p>
+                        </article>
+                    </div>
+
+                    <button class="btn btn-secundario btn-alerta">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Simular Alerta de Riesgo
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Únete a la Red de Prevención</h2>
+                <p>Descarga la aplicación oficial de ExtorPrev en tu celular y viaja seguro.</p>
+                <a href="#sobre-app" class="btn btn-principal">Descargar aplicación</a>
+            </div>
+        </section>
+
+        <section class="contacto">
+            <div class="container">
+                <h2>Contáctanos</h2>
+                <p class="intro">
+                    ¿Tienes dudas, comentarios o te gustaría saber más sobre nuestra tecnología? Escríbenos.
+                </p>
+
+                <div class="contacto-contenido">
+                    <div class="contacto-info">
+                        <img src="assets/images/contactanos.png" alt="Empresario usando un dispositivo móvil con iconos flotantes de llamada, correo y arroba">
+                        <p>Sigue a PrevCorp en nuestras redes sociales:</p>
+                        <div class="redes">
+                            <a href="" target="_blank" aria-label="Ir a WhatsApp de PrevCorp"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="" target="_blank" aria-label="Ir a Facebook de PrevCorp"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="" target="_blank" aria-label="Ir a Twitter de PrevCorp"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="" target="_blank" aria-label="Ir a YouTube de PrevCorp"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="formulario-box">
+                        <h3>Envíanos un mensaje</h3>
+                        <form class="formulario" novalidate>
+                            <div class="campo">
+                                <label>Nombre</label>
+                                <input type="text" placeholder="Ingresa tu nombre completo" required>
+                            </div>
+                            <div class="campo">
+                                <label>Correo electrónico</label>
+                                <input type="email" placeholder="correo@ejemplo.com" required>
+                            </div>
+                            <div class="campo">
+                                <label>Asunto</label>
+                                <textarea placeholder="¿Cómo te podemos ayudar?" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-principal">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Copyright &copy; 2026 - PrevCorp. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="modal login" aria-hidden="true" role="dialog">
+        <div class="modal-box">
+            <div class="modal-top">
+                <h3>Iniciar Sesión</h3>
+                <button class="cerrar" aria-label="Cerrar modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-cuerpo">
+                <form>
+                    <div class="campo">
+                        <label>Correo electrónico</label>
+                        <input type="email" placeholder="correo@ejemplo.com" required>
+                    </div>
+                    <div class="campo">
+                        <label>Contraseña</label>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-principal">Ingresar</button>
+                </form>
+            </div>
+            <div class="modal-pie">
+                <p>¿No tienes una cuenta? <a href="#">Regístrate aquí</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal registro" aria-hidden="true" role="dialog">
+        <div class="modal-box">
+            <div class="modal-top">
+                <h3>Registrarse</h3>
+                <button class="cerrar" aria-label="Cerrar modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-cuerpo">
+                <form>
+                    <div class="campo">
+                        <label>Nombre completo</label>
+                        <input type="text" placeholder="Ingresa tu nombre completo" required>
+                    </div>
+                    <div class="campo">
+                        <label>Correo electrónico</label>
+                        <input type="email" placeholder="correo@ejemplo.com" required>
+                    </div>
+                    <div class="campo">
+                        <label>Contraseña</label>
+                        <input type="password" placeholder="Crea tu contraseña" required>
+                    </div>
+                    <div class="campo">
+                        <label>Confirmar contraseña</label>
+                        <input type="password" placeholder="Confirma tu contraseña" required>
+                    </div>
+                    <button type="submit" class="btn btn-principal">Crear Cuenta</button>
+                </form>
+            </div>
+            <div class="modal-pie">
+                <p>¿Ya tienes una cuenta? <a href="#">Inicia sesión aquí</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="alerta">
+        <div><i class="fa-solid fa-triangle-exclamation"></i></div>
+        <div>
+            <h4>¡Alerta de Riesgo Cercano!</h4>
+            <p>Robo reportado hace 2 min a 150m en Av. Túpac Amaru. Desviación de ruta recomendada.</p>
+        </div>
+    </div>
+
+    <script src="assets/scripts/main.js"></script>
 </body>
 </html>
