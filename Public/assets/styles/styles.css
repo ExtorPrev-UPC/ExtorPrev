@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --azul: #2A3D52;
+    --azul-linea: #3d6a9e;
+    --rojo: #EB030B;
+    --rojo-hover: #c90208;
+    --blanco: #FFFFFF;
+    --gris-claro: #F0F0F0;
+    --gris-texto: #555555;
+    --gris-borde: #CCCCCC;
+    --font: 'Roboto Serif', serif;
+}
+
+body {
+    font-family: var(--font);
+    background-color: var(--blanco);
+    color: #000;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+h2, h3, h4 {
+    font-family: var(--font);
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 14px;
+    color: var(--gris-texto);
+}
+
+/* Botones */
+.btn {
+    display: inline-block;
+    padding: 12px 36px;
+    border-radius: 30px;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-align: center;
+}
+
+.btn-principal {
+    background-color: var(--rojo);
+    color: #000;
+}
+
+.inicio .btn-principal,
+.app-cta .btn-principal {
+    color: var(--blanco);
+}
+
+.btn-principal:hover {
+    background-color: var(--rojo-hover);
+}
+
+/* Header */
+header {
+    background-color: var(--azul);
+    border-bottom: 3px solid var(--azul-linea);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: 75px;
+}
+
+header nav {
+    justify-self: start;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--blanco);
+    font-size: 14px;
+    font-weight: 500;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.menu a:hover,
+.menu a.active {
+    border-bottom-color: var(--blanco);
+}
+
+.logo {
+    justify-self: center;
+    display: flex;
+}
+
+.logo img {
+    height: 55px;
+    width: auto;
+}
+
+.nav-auth {
+    justify-self: end;
+    display: flex;
+    gap: 12px;
+}
+
+.nav-auth a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: var(--font);
+    transition: all 0.3s;
+}
+
+.nav-auth a:first-child {
+    background-color: #b8b8b8;
+    color: #000;
+}
+
+.nav-auth a:last-child {
+    background-color: var(--rojo);
+    color: var(--blanco);
+    border: 1px solid var(--blanco);
+}
+
+.menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
