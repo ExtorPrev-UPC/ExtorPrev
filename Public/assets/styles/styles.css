@@ -636,3 +636,123 @@ footer > p {
     padding: 16px;
     font-size: 18px;
 }
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    header .container {
+        grid-template-columns: 1fr auto;
+        height: 65px;
+    }
+
+    .nav-auth {
+        display: none;
+    }
+
+    .menu-btn {
+        display: flex;
+        justify-self: end;
+    }
+
+    .logo {
+        justify-self: start;
+    }
+
+    .logo img {
+        height: 45px;
+    }
+
+    .menu {
+        position: fixed;
+        top: 65px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 65px);
+        background-color: var(--azul);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px;
+        gap: 28px;
+        transition: left 0.3s;
+        z-index: 1005;
+    }
+
+    .menu.active {
+        left: 0;
+    }
+
+    .menu-btn.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-btn.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-btn.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .inicio .container,
+    .mision,
+    .app-intro,
+    .contacto-contenido,
+    .pagina .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .inicio-img {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+
+    .valores-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .caracteristicas {
+        grid-template-columns: 1fr;
+    }
+
+    .caracteristicas .mapa {
+        grid-column: auto;
+    }
+
+    .formulario .btn-principal {
+        float: none;
+        display: block;
+        margin: 0 auto;
+    }
+
+    footer .container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .inicio,
+    .nosotros,
+    .app,
+    .contacto {
+        padding: 40px 0;
+    }
+
+    footer .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    footer h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    footer .redes {
+        justify-content: center;
+    }
+}
