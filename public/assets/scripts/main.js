@@ -1,55 +1,91 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const landing = document.querySelector('.landing');
-    const paginaLogin = document.querySelector('.pagina.login');
-    const paginaRegistro = document.querySelector('.pagina.registro');
-    const navLinks = document.querySelectorAll('.menu a, .logo');
+    let intentosFallidos = 0;
+    let loginBloqueado = false;
 
-    const scrollTargets = {
-        '#home': '.inicio',
-        '#nosotros': '.nosotros',
-        '#sobre-app': '.app',
-        '#contacto': '.contacto'
-    };
-
-    function mostrarLanding() {
-        landing.classList.remove('hidden');
-        paginaLogin.classList.add('hidden');
-        paginaRegistro.classList.add('hidden');
-    }
-
-    function mostrarPagina(pagina) {
-        landing.classList.add('hidden');
-        paginaLogin.classList.add('hidden');
-        paginaRegistro.classList.add('hidden');
-        pagina.classList.remove('hidden');
-        window.scrollTo(0, 0);
-    }
-
-    paginaLogin.classList.add('hidden');
-    paginaRegistro.classList.add('hidden');
-
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        const href = link.getAttribute('href');
-        const target = scrollTargets[href];
-
-        if (target) {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                mostrarLanding();
-                document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
-            });
+    window.addEventListener('hashchange', () => {
+        if (window.location.hash === '#registro') {
+            resetRegistro();
         }
     });
 
-    document.querySelectorAll('[data-pagina]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (link.dataset.pagina === 'login') {
-                mostrarPagina(paginaLogin);
+    if (window.location.hash === '#registro') {
+        resetRegistro();
+    }
+
+    const registroOpciones = document.querySelector('.registro-opciones');
+    const registroFormularioContainer = document.querySelector('.registro-formulario-container');
+    const formRegistro = document.getElementById('form-registro');
+    const regRolInput = document.getElementById('reg-rol');
+    const registroTitulo = document.getElementById('registro-titulo');
+
+    const campoInstitucion = document.getElementById('campo-institucion');
+    const camposConductor = document.getElementById('campos-conductor');
+
+    function resetRegistro() {
+        if (registroOpciones && registroFormularioContainer && formRegistro) {
+            registroOpciones.classList.remove('hidden');
+            registroFormularioContainer.classList.add('hidden');
+            formRegistro.reset();
+        }
+    }
+
+    document.querySelectorAll('.btn-tipo-registro').forEach(button => {
+        button.addEventListener('click', () => {
+            const tipo = button.dataset.tipo;
+            regRolInput.value = tipo;
+
+            registroOpciones.classList.add('hidden');
+            registroFormularioContainer.classList.remove('hidden');
+
+            if (tipo === 'pasajero') {
+                registroTitulo.textContent = 'Registro de Pasajero';
+                campoInstitucion.classList.remove('hidden');
+                camposConductor.classList.add('hidden');
             } else {
-                mostrarPagina(paginaRegistro);
+                registroTitulo.textContent = 'Registro de Conductor';
+                campoInstitucion.classList.add('hidden');
+                camposConductor.classList.remove('hidden');
             }
         });
+    });
+
+    document.querySelector('.btn-volver-registro')?.addEventListener('click', () => {
+        resetRegistro();
+    });
+
+    formRegistro?.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const rol = regRolInput.value;
+        const nombre = document.getElementById('reg-nombre').value.trim();
+        const correo = document.getElementById('reg-correo').value.trim();
+        const password = document.getElementById('reg-password').value.trim();
+
+        // Validación
+        if (!nombre || !correo || !password) {
+            alert('Por favor, complete todos los campos obligatorios del registro.');
+            return;
+        }
+
+        // Validación de campos según el rol
+        if (rol === 'pasajero') {
+            const institucion = document.getElementById('reg-institucion').value.trim();
+            if (!institucion) {
+                alert('Por favor, ingrese su Universidad o Institución.');
+                return;
+            }
+        } else if (rol === 'conductor') {
+            const placa = document.getElementById('reg-placa').value.trim();
+            const linea = document.getElementById('reg-linea').value.trim();
+            if (!placa || !linea) {
+                alert('Por favor, ingrese la placa del vehículo y la línea de transporte.');
+                return;
+            }
+        }
+
+        alert(`¡Registro exitoso! Cuenta creada para ${nombre}. Ya puedes iniciar sesión.`);
+        resetRegistro();
+        window.location.hash = '#login';
     });
 
     const menuBtn = document.querySelector('.menu-btn');
@@ -69,9 +105,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.querySelector('.pagina.login form')?.addEventListener('submit', (e) => {
+    const loginForm = document.getElementById('form-login');
+    loginForm?.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Inicio de sesión correctamente.');
+
+        if (loginBloqueado) {
+            alert('El acceso está bloqueado temporalmente por seguridad. Intente más tarde.');
+            return;
+        }
+
+        const correo = document.getElementById('login-correo').value.trim();
+        const password = document.getElementById('login-password').value.trim();
+
+        // Validación 
+        if (!correo || !password) {
+            alert('Por favor, complete todos los campos obligatorios para iniciar sesión.');
+            return;
+        }
+
+        // Simulación
+        if (password === '123456') {
+            intentosFallidos = 0;
+            alert('¡Inicio de sesión exitoso! Bienvenido a ExtorPrev.');
+            loginForm.reset();
+            window.location.hash = '#home';
+        } else {
+            intentosFallidos++;
+            if (intentosFallidos >= 3) {
+                loginBloqueado = true;
+                alert('Límite de intentos superado. Su cuenta ha sido bloqueada temporalmente por 15 segundos.');
+                const submitBtn = loginForm.querySelector('button[type="submit"]');
+                if (submitBtn) submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    loginBloqueado = false;
+                    intentosFallidos = 0;
+                    if (submitBtn) submitBtn.disabled = false;
+                    alert('El bloqueo temporal ha finalizado. Ya puede intentar iniciar sesión.');
+                }, 15000);
+            } else {
+                alert(`Contraseña incorrecta. Intento fallido ${intentosFallidos} de 3.`);
+            }
+        }
     });
 
     const contactForm = document.querySelector('.contacto .formulario');
@@ -90,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                alert('Por favor, ingrese un correo electrónico.');
+                alert('Por favor, ingrese un correo electrónico válido.');
                 return;
             }
 
