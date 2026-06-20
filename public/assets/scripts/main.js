@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const landing = document.querySelector('.landing');
     const paginaLogin = document.querySelector('.pagina.login');
     const paginaRegistro = document.querySelector('.pagina.registro');
-    const navLinks = document.querySelectorAll('.menu a, .logo');
+    const navLinks = document.querySelectorAll('.menu a');
 
     const scrollTargets = {
-        '#home': '.inicio',
-        '#nosotros': '.nosotros',
-        '#sobre-app': '.app',
-        '#contacto': '.contacto'
+        '#home': '#home',
+        '#nosotros': '#nosotros',
+        '#sobre-app': '#sobre-app',
+        '#contacto': '#contacto'
     };
 
     function mostrarLanding() {
@@ -68,6 +68,21 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Scroll spy: highlight active nav link based on visible section
+    const landingSections = document.querySelectorAll('main.landing section[id]');
+
+    const scrollSpy = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                const activeLink = document.querySelector(`.menu a[href="#${entry.target.id}"]`);
+                if (activeLink) activeLink.classList.add('active');
+            }
+        });
+    }, { threshold: 0.45, rootMargin: '-60px 0px 0px 0px' });
+
+    landingSections.forEach(section => scrollSpy.observe(section));
 
     document.querySelector('.pagina.login form')?.addEventListener('submit', (e) => {
         e.preventDefault();
