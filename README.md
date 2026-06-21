@@ -4,7 +4,6 @@
 **ExtorPrev** es una solución digital preventiva y de alerta en tiempo real diseñada para el transporte urbano. La aplicación ayuda a los pasajeros y conductores a identificar y evitar zonas de riesgo y delincuencia en Lima (como extorsiones y asaltos), permitiéndoles tomar decisiones informadas y seguras durante sus desplazamientos cotidianos.
 
 El proyecto es desarrollado bajo la startup UrbanSafe para el curso de **Interacción Humano-Computador y Tecnologías Móviles (IHC y Tecnologías Móviles)** de la Universidad Peruana de Ciencias Aplicadas (UPC).
-## Autores
 
 ## Autores
 * **José Daniel Cueto Mendez**
