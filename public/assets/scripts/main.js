@@ -1,48 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const landing = document.querySelector('.landing');
-    const paginaLogin = document.querySelector('.pagina.login');
-    const paginaRegistro = document.querySelector('.pagina.registro');
+    let intentosFallidos = 0;
+    let loginBloqueado = false;
     const navLinks = document.querySelectorAll('.menu a');
 
-    const scrollTargets = {
-        '#home': '#home',
-        '#nosotros': '#nosotros',
-        '#sobre-app': '#sobre-app',
-        '#contacto': '#contacto'
-    };
-
-    function mostrarLanding() {
-        landing.classList.remove('hidden');
-        paginaLogin.classList.add('hidden');
-        paginaRegistro.classList.add('hidden');
-    }
-
-    function mostrarPagina(pagina) {
-        landing.classList.add('hidden');
-        paginaLogin.classList.add('hidden');
-        paginaRegistro.classList.add('hidden');
-        pagina.classList.remove('hidden');
-        window.scrollTo(0, 0);
-    }
-
-    paginaLogin.classList.add('hidden');
-    paginaRegistro.classList.add('hidden');
-
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        const href = link.getAttribute('href');
-        const target = scrollTargets[href];
-
-        if (target) {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                mostrarLanding();
-                document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
-            });
+    window.addEventListener('hashchange', () => {
+        const hash = window.location.hash;
+        if (hash === '#registro') {
+            resetRegistro();
+        } else if (hash === '#recuperacion') {
+            resetRecuperar();
         }
     });
 
     if (window.location.hash === '#registro') {
         resetRegistro();
+    }
+    if (window.location.hash === '#recuperacion') {
+        resetRecuperar();
+    }
+
+    const recuperarPaso1 = document.getElementById('recuperar-paso1');
+    const recuperarPaso2 = document.getElementById('recuperar-paso2');
+    const formRecuperarEmail = document.getElementById('form-recuperar-email');
+    const formRecuperarPassword = document.getElementById('form-recuperar-password');
+
+    function resetRecuperar() {
+        if (recuperarPaso1 && recuperarPaso2 && formRecuperarEmail && formRecuperarPassword) {
+            recuperarPaso1.classList.remove('hidden');
+            recuperarPaso2.classList.add('hidden');
+            formRecuperarEmail.reset();
+            formRecuperarPassword.reset();
+        }
     }
 
     const registroOpciones = document.querySelector('.registro-opciones');
@@ -152,7 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     landingSections.forEach(section => scrollSpy.observe(section));
 
-    document.querySelector('.pagina.login form')?.addEventListener('submit', (e) => {
+    const loginForm = document.getElementById('form-login');
+    loginForm?.addEventListener('submit', (e) => {
         e.preventDefault();
 
         if (loginBloqueado) {
@@ -179,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             intentosFallidos++;
             if (intentosFallidos >= 3) {
                 loginBloqueado = true;
-                alert('Límite de intentos superado. Su cuenta ha sido bloqueada temporalmente por 15 segundos.');
+                alert('Límite de intentos superado. Su cuenta ha sido bloqueada por 15 segundos.');
                 const submitBtn = loginForm.querySelector('button[type="submit"]');
                 if (submitBtn) submitBtn.disabled = true;
 
@@ -190,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('El bloqueo temporal ha finalizado. Ya puede intentar iniciar sesión.');
                 }, 15000);
             } else {
-                alert(`Contraseña incorrecta. Intento fallido ${intentosFallidos} de 3.`);
+                alert(`Contraseña incorrecta. ${intentosFallidos} de 3.`);
             }
         }
     });
@@ -211,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                alert('Por favor, ingrese un correo electrónico válido.');
+                alert('Por favor ingrese un correo electrónico válido.');
                 return;
             }
 
@@ -219,4 +208,44 @@ document.addEventListener('DOMContentLoaded', () => {
             contactForm.reset();
         });
     }
+
+    formRecuperarEmail?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const correo = document.getElementById('rec-correo').value.trim();
+
+        if (!correo) {
+            alert('Por favor, ingrese su correo electrónico.');
+            return;
+        }
+
+        alert('Se han enviado las instrucciones de recuperación a tu correo electrónico.');
+        recuperarPaso1.classList.add('hidden');
+        recuperarPaso2.classList.remove('hidden');
+    });
+
+    formRecuperarPassword?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nuevaPass = document.getElementById('rec-nueva-pass').value;
+        const confirmarPass = document.getElementById('rec-confirmar-pass').value;
+
+        if (!nuevaPass || !confirmarPass) {
+            alert('Por favor, complete todos los campos.');
+            return;
+        }
+
+        if (nuevaPass !== confirmarPass) {
+            alert('Las contraseñas no coinciden.');
+            return;
+        }
+
+        // Validación de requisitos
+        if (nuevaPass.length < 8 || !/\d/.test(nuevaPass)) {
+            alert('La contraseña debe tener al menos 8 caracteres y contener al menos un número.');
+            return;
+        }
+
+        alert('¡Contraseña restablecida con éxito!');
+        resetRecuperar();
+        window.location.hash = '#login';
+    });
 });

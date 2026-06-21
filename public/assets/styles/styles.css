@@ -583,7 +583,8 @@ footer>p {
 }
 
 body:has(#login:target) .landing,
-body:has(#registro:target) .landing {
+body:has(#registro:target) .landing,
+body:has(#recuperacion:target) .landing {
     display: none;
 }
 
@@ -708,6 +709,11 @@ body:has(#registro:target) .landing {
 
 #form-registro {
     margin-top: 15px;
+}
+
+.volver-login-link {
+    margin-top: 15px;
+    justify-content: center;
 }
 
 /* RESPONSIVE */
