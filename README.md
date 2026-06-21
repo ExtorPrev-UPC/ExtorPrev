@@ -22,4 +22,5 @@ El proyecto es desarrollado bajo la startup UrbanSafe para el curso de **Interac
 * **Alertas en Tiempo Real:** Notificaciones automáticas visuales, sonoras y por vibración que avisan al usuario cuando se aproxima a una zona de alto riesgo.
 * **Reporte Seguro y Anónimo:** Opción rápida para que conductores y pasajeros reporten incidentes en tiempo real de forma anónima para mantener actualizado el mapa.
 * **Consejos y Recomendaciones:** Consejos de seguridad rápidos y guías preventivas para movilizarse de forma segura por la ciudad.
+* **Envío de Alerta a Contactos de Confianza:** Botón de emergencia para compartir rápidamente la ubicación en tiempo real con contactos preestablecidos en situaciones de riesgo.
 
