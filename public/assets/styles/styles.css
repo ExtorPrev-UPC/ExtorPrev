@@ -304,6 +304,7 @@ footer>p {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 20px;
 }
 
 .inicio-texto {
@@ -360,6 +361,7 @@ footer>p {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 20px;
 }
 
 .valores {
@@ -460,6 +462,7 @@ footer>p {
 .app-intro img {
     width: 100%;
     height: auto;
+    border-radius: 20px;
 }
 
 .app-intro h2 {
