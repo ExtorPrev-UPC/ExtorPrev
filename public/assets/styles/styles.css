@@ -36,6 +36,15 @@ body {
     padding: 0 40px;
 }
 
+/* Componente card reutilizable */
+.card {
+    background: var(--blanco);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
 h2,
 h3,
 h4 {
@@ -295,7 +304,7 @@ footer>p {
     padding: 60px 0 40px;
 }
 
-.inicio .container {
+.inicio .container .card {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
@@ -491,6 +500,16 @@ footer>p {
 
 .caracteristicas article {
     text-align: center;
+    background: var(--blanco);
+    border-radius: 12px;
+    padding: 20px 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.caracteristicas article:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
 }
 
 .caracteristicas h3 {
@@ -815,7 +834,7 @@ body:has(#recuperacion:target) .landing {
         transform: rotate(-45deg) translate(6px, -6px);
     }
 
-    .inicio .container,
+    .inicio .container .card,
     .mision,
     .app-intro,
     .contacto-contenido,
