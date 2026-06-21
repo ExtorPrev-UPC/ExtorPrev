@@ -179,7 +179,7 @@
                 <form id="form-login">
                     <input type="email" id="login-correo" placeholder="Correo" required>
                     <input type="password" id="login-password" placeholder="Contraseña" required>
-                    <a href="#" data-pagina="recuperacion">Olvidé mi contraseña</a>
+                    <a href="#recuperacion">Olvidé mi contraseña</a>
                     <button type="submit" class="btn btn-principal">Iniciar Sesión</button>
                 </form>
             </div>
@@ -218,6 +218,38 @@
 
                     <button type="submit" class="btn btn-principal">Registrar Cuenta</button>
                 </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Recuperación de Contraseña -->
+    <main class="pagina recuperacion" id="recuperacion">
+        <div class="container">
+            <img src="assets/images/registro.png" alt="Ilustración de recuperación">
+            <div>
+                <h2>Recuperar Contraseña</h2>
+
+                <div id="recuperar-paso1">
+                    <p class="registro-subtitulo">Ingresa tu correo registrado para enviarte las instrucciones de
+                        restablecimiento.</p>
+                    <form id="form-recuperar-email">
+                        <input type="email" id="rec-correo" placeholder="Correo Electrónico" required>
+                        <button type="submit" class="btn btn-principal">Enviar Instrucciones</button>
+                    </form>
+                </div>
+
+                <div id="recuperar-paso2" class="hidden">
+                    <p class="registro-subtitulo">Crea tu nueva contraseña. Debe tener al menos 8 caracteres y contener
+                        al menos un número.</p>
+                    <form id="form-recuperar-password">
+                        <input type="password" id="rec-nueva-pass" placeholder="Nueva Contraseña" required>
+                        <input type="password" id="rec-confirmar-pass" placeholder="Confirmar Contraseña" required>
+                        <button type="submit" class="btn btn-principal">Restablecer Contraseña</button>
+                    </form>
+                </div>
+
+                <a href="#login" class="btn-volver-registro volver-login-link"><i class="fa-solid fa-arrow-left"></i>
+                    Volver al Login</a>
             </div>
         </div>
     </main>
