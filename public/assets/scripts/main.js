@@ -1,10 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let intentosFallidos = 0;
-    let loginBloqueado = false;
+    const landing = document.querySelector('.landing');
+    const paginaLogin = document.querySelector('.pagina.login');
+    const paginaRegistro = document.querySelector('.pagina.registro');
+    const navLinks = document.querySelectorAll('.menu a');
 
-    window.addEventListener('hashchange', () => {
-        if (window.location.hash === '#registro') {
-            resetRegistro();
+    const scrollTargets = {
+        '#home': '#home',
+        '#nosotros': '#nosotros',
+        '#sobre-app': '#sobre-app',
+        '#contacto': '#contacto'
+    };
+
+    function mostrarLanding() {
+        landing.classList.remove('hidden');
+        paginaLogin.classList.add('hidden');
+        paginaRegistro.classList.add('hidden');
+    }
+
+    function mostrarPagina(pagina) {
+        landing.classList.add('hidden');
+        paginaLogin.classList.add('hidden');
+        paginaRegistro.classList.add('hidden');
+        pagina.classList.remove('hidden');
+        window.scrollTo(0, 0);
+    }
+
+    paginaLogin.classList.add('hidden');
+    paginaRegistro.classList.add('hidden');
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        const href = link.getAttribute('href');
+        const target = scrollTargets[href];
+
+        if (target) {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                mostrarLanding();
+                document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
+            });
         }
     });
 
@@ -105,8 +138,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const loginForm = document.getElementById('form-login');
-    loginForm?.addEventListener('submit', (e) => {
+    const landingSections = document.querySelectorAll('main.landing section[id]');
+
+    const scrollSpy = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                const activeLink = document.querySelector(`.menu a[href="#${entry.target.id}"]`);
+                if (activeLink) activeLink.classList.add('active');
+            }
+        });
+    }, { threshold: 0.45, rootMargin: '-60px 0px 0px 0px' });
+
+    landingSections.forEach(section => scrollSpy.observe(section));
+
+    document.querySelector('.pagina.login form')?.addEventListener('submit', (e) => {
         e.preventDefault();
 
         if (loginBloqueado) {
